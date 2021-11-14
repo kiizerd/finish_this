@@ -1,0 +1,7 @@
+<section>
+  <em><%= task.name %></em>
+  <span>
+    <%= link_to 'Edit', edit_task_path(task) %> |
+    <%= link_to 'Delete', task, method: :delete  %>
+  </span>
+</section>

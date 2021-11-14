@@ -1,0 +1,23 @@
+<section class="">
+  <span>
+    <u><%= section.name %></u> | 
+    <% section_path = "/sections/#{section.id}" %>
+    <% edit_section_path = "/sections/#{section.id}/edit" %>
+    <%= link_to 'Edit', edit_section_path %>
+    <%= link_to 'Delete', section_path, method: :delete %>
+  </span>
+  <p>
+    <%= section.description %>
+  </p>
+
+  <div>
+    <span>
+      <strong>Tasks</strong> |
+      <%= link_to 'New task', new_section_task_path(section) %>
+    </span>
+    <%= render partial: 'tasks/task', collection: section.tasks %>
+  </div>
+<% unless section == section.project.sections.last %>
+  <hr>
+<% end %>
+</section>

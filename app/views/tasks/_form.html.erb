@@ -1,18 +1,13 @@
-<!--
-The below path var is necessary as I beliebe the default
-shallow resourceful routing is flawed for this particular route
-[POST] /projects/:project_id/sections/new [Controller=>Sections] [Action=>Create]
--->
-<% if params[:project_id] %>
 
-  <% @path = "/projects/#{params[:project_id]||@section.project.id}/sections/" %>
-  <%= simple_form_for(@section, url: @path, method: :post) do |f| %>
+<% if params[:section_id] %>
+
+  <% @path = "/sections/#{params[:section_id]||@task.section.id}/tasks/" %>
+  <%= simple_form_for(@task, url: @path, method: :post) do |f| %>
     <%= f.error_notification %>
     <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
     <div class="form-inputs">
       <%= f.input :name %>
-      <%= f.input :description %>
       <%= f.input :priority %>
       <%= f.input :status %>
     </div>
@@ -24,13 +19,12 @@ shallow resourceful routing is flawed for this particular route
 
 <% else %>
 
-  <%= simple_form_for(@section) do |f| %>
+  <%= simple_form_for(@task) do |f| %>
     <%= f.error_notification %>
     <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
     <div class="form-inputs">
       <%= f.input :name %>
-      <%= f.input :description %>
       <%= f.input :priority %>
       <%= f.input :status %>
     </div>
