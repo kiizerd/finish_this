@@ -1,0 +1,42 @@
+<!--
+The below path var is necessary as I beliebe the default
+shallow resourceful routing is flawed for this particular route
+[POST] /projects/:project_id/sections/new [Controller=>Sections] [Action=>Create]
+-->
+<% @path = "/projects/#{params[:project_id]||@section.project.id}/sections/" %>
+<% if params[:project_id] %>
+  <%# <%= error.please.please %>
+
+<%= simple_form_for(@section, url: @path, method: :post) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <%= f.input :priority %>
+    <%= f.input :status %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
+<% else %>
+<%= simple_form_for(@section) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <%= f.input :priority %>
+    <%= f.input :status %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
+
+<% end %>

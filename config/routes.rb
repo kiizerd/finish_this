@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  resources :projects
   devise_for :users
+  resources :projects do
+    resources :sections, shallow: true
+  end
+  
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   root 'projects#index'

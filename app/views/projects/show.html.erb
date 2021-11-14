@@ -1,24 +1,45 @@
-<p id="notice"><%= notice %></p>
+<section>
+  <p>
+    <strong>Name:</strong>
+    <%= @project.name %>
+  </p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @project.name %>
-</p>
+  <p>
+    <strong>Description:</strong>
+    <%= @project.description %>
+  </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @project.description %>
-</p>
+  <p>
+    <strong>Status:</strong>
+    <%= @project.status %>
+  </p>
+</section>
 
-<p>
-  <strong>Status:</strong>
-  <%= @project.status %>
-</p>
+<article class="sections_wrapper">
+  <h4 class="">Sections</h4>
+  <span>
+    <% add_section_path = "/projects/#{@project.id}/sections/new" %>
+    <%= link_to 'Add Section', add_section_path,
+                class:"" %>
+  </span>
+  <% @project.sections.each do |section| %>
+    <section class="">
+      <p class=""><%= section.name %></p>
+      <p class=""><%= section.description %></p>
+      <span>
+        <% section_path = "/sections/#{section.id}" %>
+        <% edit_section_path = "/sections/#{section.id}/edit" %>
+        <%= link_to 'Edit', edit_section_path %>
+        <%= link_to 'Delete', section_path, method: :delete %>
+      </span>
+    <% unless section == @project.sections.last %>
+      <hr>
+    <% end %>
+    </section>
+  <% end %>
 
-<p>
-  <strong>User:</strong>
-  <%= @project.user_id %>
-</p>
+</article>
 
+<hr>
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>
