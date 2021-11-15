@@ -12,4 +12,17 @@
  *
  *= require_tree .
  *= require_self
- */
+**/
+
+html {
+  overflow-y: hidden;
+}
+
+.font-light, .text-sm, .text-xs {
+  font-family: 'Nunito';
+}
+
+// Disable the asterik placed by SimpleForm's :required attribute
+abbr {
+  display: none;
+}
