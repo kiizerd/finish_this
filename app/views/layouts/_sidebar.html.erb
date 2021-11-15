@@ -1,0 +1,11 @@
+<div class="w-48 relative bg-gray-800 shadow md:h-full flex-col justify-between hidden md:flex">
+  <div class="px-8">
+    <div class="h-12 w-full flex items-center text-gray-300">
+      Projects
+    </div>
+    <hr>
+    <ul class="mt-6">
+      <%= render partial: 'projects/label', collection: current_user.projects %>
+    </ul>
+  </div>
+</div>
