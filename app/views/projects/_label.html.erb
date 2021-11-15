@@ -1,0 +1,6 @@
+<p class="text-sm text-gray-200">
+  <% if Project.exists?(label.id) %>
+    <%= link_to label.name, label %>
+
+  <% end %>
+</p>

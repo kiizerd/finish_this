@@ -1,37 +1,48 @@
+<% unless @task %>
 
-<% if params[:section_id] %>
-
-  <% @path = "/sections/#{params[:section_id]||@task.section.id}/tasks/" %>
-  <%= simple_form_for(@task, url: @path, method: :post) do |f| %>
-    <%= f.error_notification %>
-    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
-    <div class="form-inputs">
-      <%= f.input :name %>
-      <%= f.input :priority %>
-      <%= f.input :status %>
-    </div>
-
-    <div class="form-actions">
-      <%= f.button :submit %>
-    </div>
+  <% form_classlist   = 'w-full mt-2 px-2 text-sm' %>
+  <% path = "/sections/#{section.id}/tasks/" %>
+  <%= simple_form_for(section.tasks.build,
+                      url: path,
+                      method: :post,
+                      html: {
+                        class: form_classlist
+                      }) do |f| %>
+    <div class="flex items-center">
+      <% input_classlist  = 'appearance-none bg-transparent border-none w-full text-gray-700 focus:outline-none' %>
+      <% button_classlist = 'bg-indigo-300 hover:bg-indigo-400 text-lg text-black px-2 rounded transform hover:scale-105 transition' %>
+    
+      <%= f.input :name,
+                  label: false,
+                  wrapper: false,
+                  autofocus: true,
+                  input_html: {
+                    class: input_classlist
+                  },
+                  placeholder: 'Add task..' %>
+    
+      <%= f.button :submit, '+', class: button_classlist %>
+    </div>                  
   <% end %>
 
 <% else %>
 
   <%= simple_form_for(@task) do |f| %>
-    <%= f.error_notification %>
-    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
-    <div class="form-inputs">
-      <%= f.input :name %>
-      <%= f.input :priority %>
-      <%= f.input :status %>
-    </div>
-
-    <div class="form-actions">
-      <%= f.button :submit %>
-    </div>
+    <div class="flex items-center">
+      <% input_classlist  = 'appearance-none bg-transparent border-none w-full text-gray-700 focus:outline-none' %>
+      <% button_classlist = 'flex-shrink-0 bg-indigo-500 hover:bg-indigo-600 text-lg text-white px-2 rounded' %>
+    
+      <%= f.input :name,
+                  label: false,
+                  wrapper: false,
+                  autofocus: true,
+                  input_html: {
+                    class: input_classlist
+                  },
+                  placeholder: 'Add task..' %>
+    
+      <%= f.button :submit, '+', class: button_classlist %>
+    </div>   
   <% end %>
 
 <% end %>

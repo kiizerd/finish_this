@@ -1,31 +1,24 @@
-<section>
-  <p>
-    <strong>Name:</strong>
-    <%= @project.name %>
-  </p>
+<div class="p-1">
+  <section class="flex m-4 justify-between">
+      <div class="flex center-items">
+          <h3 class="text-gray-800 mr-4 font-bold text-2xl"><%= @project.name %></h3>
+          <div class="text-white rounded-xl bg-blue-500 text-xs flex p-2">
+            <span><%= @project.status || 'no status' %></span>
+          </div>
+      </div>
+      <div class="text-gray-700 font-sm hidden md:flex items-center">
+        <%= @project.description %>
+      </div>
+  </section>
 
-  <p>
-    <strong>Description:</strong>
-    <%= @project.description %>
-  </p>
+  <section class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 px-4 py-2">
+    <%= render partial: 'sections/section', collection: @project.sections %>
+  </section>
 
-  <p>
-    <strong>Status:</strong>
-    <%= @project.status %>
-  </p>
-</section>
-
-<article class="sections_wrapper">
-  <span>
-  <strong>Sections</strong> |
+  <div class="p-6">
     <% add_section_path = "/projects/#{@project.id}/sections/new" %>
-    <%= link_to 'Add Section', add_section_path,
-                class:"" %>
-  </span>
-  <%= render partial: 'sections/section', collection: @project.sections %>
-
-</article>
-
-<hr>
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+    <%= link_to 'Add Section', add_section_path %> |
+    <%= link_to 'Edit', edit_project_path(@project) %> |
+    <%= link_to 'Back', projects_path %>
+  </div>
+</div>

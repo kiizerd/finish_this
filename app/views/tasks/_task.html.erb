@@ -1,7 +1,11 @@
-<section>
-  <em><%= task.name %></em>
-  <span>
-    <%= link_to 'Edit', edit_task_path(task) %> |
-    <%= link_to 'Delete', task, method: :delete  %>
+<% task_classlist = "text-sm py-1 px-2 bg-gray-100 rounded shadow-sm hover:shadow-md
+                     hover:bg-gray-200 my-2 w-full flex justify-between transform hover:scale-105 transition" %>
+<section class="<%= task_classlist %>">
+  <span class="font-light"><%= task.name %></span>
+  <span class="flex text-xs text-gray-600">
+    <%= link_to 'Edit', edit_task_path(task),
+                class: "hover:text-gray-800 hover:drop-shadow-md mr-1" %>
+    <%= link_to 'Delete', task, method: :delete,
+                class: "hover:text-gray-800 hover:drop-shadow-md"  %>
   </span>
 </section>
