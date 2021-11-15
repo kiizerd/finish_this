@@ -1,25 +1,104 @@
-<h2>Sign up</h2>
+<div class="max-w-sm mx-auto px-6">
+  <div class="relative flex flex-wrap">
+    <div class="w-full relative">
+      <div class="md:mt-6">
+        <div class="text-center font-semibold text-black">
+          Create an account
+        </div>
+        <div class="text-center font-base text-black">
+          Get your projects finished!
+        </div>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
+        <% label_classlist = "px-1 text-sm text-gray-600" %>
 
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email" }%>
-    <%= f.input :password,
-                required: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: true,
-                input_html: { autocomplete: "new-password" } %>
+        <% input_classlist = 'text-md block px-3 py-2 rounded-lg w-full
+                                bg-white border-2 border-gray-300 shadow-md
+                                focus:placeholder-gray-500 focus:bg-white
+                                focus:border-gray-600 focus:outline-none
+                                placeholder-gray-600' %>
+
+        <% error_classlist = "text-sm text-gray-800 block px-2 py-1 m-2 w-7/12
+                              bg-red-400 rounded shadow-sm" %>        
+
+        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name),        
+                            html: { class: "mt-4", "x-data"=>"{password: '', password_confirm: ''}" },
+                            defaults: {
+                              wrapper: false,
+                              label_html: { class: label_classlist },
+                              input_html: { class: input_classlist },
+                              error_html: { class: error_classlist }
+                            }) do |f| %>
+          <div class="mx-auto max-w-lg ">
+            <%= f.error_notification %>
+
+            <div class="py-1">
+              <%= f.input :email, required: true, input_html: { autocomplete: "email" } %>
+            </div>
+
+            <div class="py-1">
+              <%= f.input :password, required: true,
+                          input_html: {
+                            autocomplete: "new-password",
+                            "x-model"=> "password" } %>
+            </div>            
+            
+            <div class="py-1">
+              <%= f.input :password_confirmation, required: true,
+                          input_html: {
+                            autocomplete: "new-password",
+                            "x-model"=> "password_confirm" } %>
+            </div>
+          </div>
+
+          <!---->
+          <div class="flex justify-start mt-3 ml-4 p-1">
+            <ul>
+              <li class="flex items-center py-1">
+                <div :class="{'bg-green-200 text-green-700': password == password_confirm && password.length > 0, 'bg-red-200 text-red-700':password != password_confirm || password.length == 0}"
+                     class=" rounded-full p-1 fill-current ">
+                  <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path x-show="password == password_confirm && password.length > 0" stroke-linecap="round"
+                          stroke-linejoin="round" stroke-width="2"
+                          d="M5 13l4 4L19 7"/>
+                    <path x-show="password != password_confirm || password.length == 0" stroke-linecap="round"
+                          stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                  </svg>
+                </div>
+                <span :class="{'text-green-700': password == password_confirm && password.length > 0, 'text-red-700':password != password_confirm || password.length == 0}"
+                      class="font-medium text-sm ml-3"
+                      x-text="password == password_confirm && password.length > 0 ? 'Passwords match' : 'Passwords do not match' ">
+                </span>
+              </li>
+              <li class="flex items-center py-1">
+                <div :class="{'bg-green-200 text-green-700': password.length > 7, 'bg-red-200 text-red-700':password.length < 7 }"
+                      class=" rounded-full p-1 fill-current ">
+                  <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path x-show="password.length > 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    <path x-show="password.length < 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                  </svg>
+                </div>
+                <span :class="{'text-green-700': password.length > 7, 'text-red-700':password.length < 7 }"
+                      class="font-medium text-sm ml-3"
+                      x-text="password.length > 7 ? 'The minimum length is reached' : 'At least 8 characters required' ">
+                </span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="form-actions">
+            <% button_classlist = 'mt-3 text-lg font-semibold bg-gray-800
+                                   w-full text-white rounded-lg px-6 py-3
+                                   shadow-xl hover:text-white hover:bg-black
+                                   block' %>
+            <%= f.button :submit, "Register", class: button_classlist %>
+          </div>
+
+      <% end %>
+
+      <div class="devise-links my-2">
+        <%= render "devise/shared/links" %>      
+      </div>
+
+    </div>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
