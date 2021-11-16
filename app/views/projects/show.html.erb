@@ -15,10 +15,10 @@
     <%= render partial: 'sections/section', collection: @project.sections %>
   </section>
 
+</div>
   <div class="p-6">
     <% add_section_path = "/projects/#{@project.id}/sections/new" %>
     <%= link_to 'Add Section', add_section_path %> |
     <%= link_to 'Edit', edit_project_path(@project) %> |
     <%= link_to 'Back', projects_path %>
   </div>
-</div>
