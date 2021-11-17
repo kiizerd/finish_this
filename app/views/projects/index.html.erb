@@ -1,29 +1,9 @@
-<h1>Projects</h1>
+<div class="p-1 md:mt-6 mt-2">
+  <div class="grid lg:grid-cols-3 md:grid-cols-2 sm:gap-4 md:px-4 px-1 md:py-2 py-1">
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Status</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
     <% @projects.each do |project| %>
-      <tr>
-        <td><%= project.name %></td>
-        <td><%= project.description %></td>
-        <td><%= project.status %></td>
-        <td><%= link_to 'Show', project %></td>
-        <td><%= link_to 'Edit', edit_project_path(project) %></td>
-        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <%= render 'card', project: project %>
     <% end %>
-  </tbody>
-</table>
 
-<br>
-
-<%= link_to 'New Project', new_project_path %>
+  </div>
+</div>

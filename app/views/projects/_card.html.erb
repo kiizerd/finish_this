@@ -1,0 +1,43 @@
+<div class="grid-item" data-controller="click">
+  <article data-action="click->click#link-to-project"
+           class="m-1 bg-indigo-100 p-2 rounded shadow-sm hover:shadow-md border-gray-200 hover:border-gray-300 border-2 transition duration-300">
+    <span class="flex justify-between center-items">
+
+      <!-- hidden input for stimulusjs -->
+      <input data-click-target="project_id"
+             type="text"
+             class="hidden"
+             value="<%= project.id %>">
+
+        <%= button_to project, method: :get, class: 'flex' do %>
+          <h5 class="font-semibold text-lg cursor-pointer mr-1"><%= project.name.truncate(35) %></h5>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 11-2.828-2.828l3-3z" clip-rule="evenodd" />
+          </svg>
+        <% end %>
+
+      <div class="flex shadow-sm rounded bg-indigo-300 h-8">
+        <% btn_classlist  = 'hover:bg-indigo-400 hover:shadow-md rounded hover:transform hover:scale-105 transition duration-300' %>
+        <%= button_to edit_project_path(project.id), method: :get,
+            form_class: btn_classlist do %>
+          <svg xmlns="http://www.w3.org/2000/svg" class="m-2 h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+          <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+          </svg>
+        <% end %>
+        <%= button_to project, method: :delete,
+            form_class: btn_classlist do %>
+          <svg xmlns="http://www.w3.org/2000/svg" class="m-2 h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+          </svg>
+        <% end %>
+      </div>
+    </span>
+    <p class="p-1 font-light"><%= project.description.truncate(80) %></p>
+
+    <div>
+
+      <%= render partial: 'sections/card_item', collection: project.sections, as: :section %>
+
+    </div>
+  </article>
+</div>
