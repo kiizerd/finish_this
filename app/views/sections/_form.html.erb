@@ -1,43 +1,114 @@
-<!--
-The below path var is necessary as I beliebe the default
-shallow resourceful routing is flawed for this particular route
-[POST] /projects/:project_id/sections/new [Controller=>Sections] [Action=>Create]
--->
-<% if params[:project_id] %>
+<div class="max-w-md mx-auto px-6">
+  <div class="relative flex flex-wrap">
+    <div class="w-full relative">
+      <div class="md:mt-6 mt-2">
+      
+        <div class="back-btn-parent static h-0 w-0">
+          <div class="back-btn-wrapper absolute p-1">
+            <% btn_classlist = 'text-sm text-gray-200 rounded py-2 px-3
+                                shadow-sm hover:shadow-md bg-indigo-400
+                                hover:bg-indigo-500 transition duration-300' %>
+            <%= link_to 'Back', @project || @section.project, class: btn_classlist %>
+          </div>
+        </div>
 
-  <% @path = "/projects/#{params[:project_id]||@section.project.id}/sections/" %>
-  <%= simple_form_for(@section, url: @path, method: :post) do |f| %>
-    <%= f.error_notification %>
-    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+        <div class="text-center text-lg font-semibold text-black">
+          <% if current_page?(action: 'new') %>
+            New section
+          <% elsif current_page?(action: 'edit') %>
+            Edit section
+          <% end %>
+        </div>
+      </div>
 
-    <div class="form-inputs">
-      <%= f.input :name %>
-      <%= f.input :description %>
-      <%= f.input :priority %>
-      <%= f.input :status %>
-    </div>
+      <% label_classlist = 'px-1 text-sm text-gray-600' %>
+      <% input_classlist = 'text-md block px-3 py-2 rounded-lg w-full
+                            bg-gray-100 border-2 border-gray-200 shadow-md
+                            focus:bg-white focus:border-gray-400
+                            focus:outline-none hover:shadow-lg hover:border-gray-300
+                            transition duration-300' %>
+      <% error_classlist = 'text-sm text-gray-800 block px-2 py-1 m-2 w-7/12
+                            bg-red-400 rounded shadow-sm' %>
 
-    <div class="form-actions">
-      <%= f.button :submit %>
-    </div>
-  <% end %>
+      <% path = "/projects/#{params[:project_id]||@section.project.id}/sections/" %>
 
-<% else %>
+      <% form_params = [] %>
 
-  <%= simple_form_for(@section) do |f| %>
-    <%= f.error_notification %>
-    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+      <% if current_page?(action: 'new') %>
 
-    <div class="form-inputs">
-      <%= f.input :name %>
-      <%= f.input :description %>
-      <%= f.input :priority %>
-      <%= f.input :status %>
-    </div>
+        <%= simple_form_for(@section, html: { class: 'mt-4' },
+                            url: path,
+                            method: :post,
+                            defaults: {
+                              wrapper: false,
+                              label_html: { class: label_classlist },
+                              input_html: { class: input_classlist },
+                              error_html: { class: error_classlist }
+                            }) do |f| %>
 
-    <div class="form-actions">
-      <%= f.button :submit %>
-    </div>
-  <% end %>
+          <div class="mx-auto max-w-lg">
+            <%= f.error_notification %>
+            <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-<% end %>
+            <div class="py-1">
+              <%= f.input :name, required: true %>
+            </div>
+
+            <div class="py-1">
+              <%= f.input :description, required: true, input_html: {
+                          class: "#{input_classlist} resize-none text-sm h-24 mb-1" } %>
+            </div>
+
+          </div>
+
+          <div class="form-actions">
+            <% button_classlist = 'mt-3 text-lg font-semibold bg-gray-800
+                                   w-full text-gray-200 rounded-lg px-6 py-3
+                                   shadow-xl hover:text-gray-100 hover:bg-black
+                                   block transition duration-300' %>
+            <%= f.button :submit, "Create", class: button_classlist %>
+          </div>
+
+        <% end %>
+
+      <% elsif current_page?(action: 'edit') %>
+
+        <%= simple_form_for(@section, html: { class: 'mt-4' },
+                            defaults: {
+                              wrapper: false,
+                              label_html: { class: label_classlist },
+                              input_html: { class: input_classlist },
+                              error_html: { class: error_classlist }
+                            }) do |f| %>
+
+          <div class="mx-auto max-w-lg">
+            <%= f.error_notification %>
+            <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+            <div class="py-1">
+              <%= f.input :name, required: true %>
+            </div>
+
+            <div class="py-1">
+              <%= f.input :description, required: true, input_html: {
+                          class: "#{input_classlist} resize-none text-sm h-24 mb-1" } %>
+            </div>
+
+          </div>
+
+          <div class="form-actions">
+            <% submit_text = current_page?(action: 'new') ? 'Create' : "Submit changes" %>
+            <% button_classlist = 'mt-3 text-lg font-semibold bg-gray-800
+                                   w-full text-gray-200 rounded-lg px-6 py-3
+                                   shadow-xl hover:text-gray-100 hover:bg-black
+                                   block transition duration-300' %>
+            <%= f.button :submit, submit_text, class: button_classlist %>
+          </div>
+
+        <% end %>
+
+      <% end %>
+
+    </div>  
+  </div>
+</div>

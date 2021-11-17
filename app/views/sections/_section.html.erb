@@ -1,5 +1,5 @@
 <div class="grid-item">
-  <article class="rounded bg-indigo-100 p-2">
+  <article class="rounded bg-indigo-100 p-2 shadow-sm hover:shadow-md transition duration-300">
     <span class="flex justify-between center-items">
       <% section_path = "/sections/#{section.id}" %>
       <% edit_section_path = "/sections/#{section.id}/edit" %>
@@ -7,7 +7,7 @@
       <h5 class="font-semibold text-lg"><%= section.name %></h5>
 
       <div class="flex shadow-sm rounded bg-indigo-300 h-8">
-        <% btn_classlist  = 'hover:bg-indigo-400 hover:shadow-md rounded hover:transform hover:scale-105 transition' %>
+        <% btn_classlist  = 'hover:bg-indigo-400 hover:shadow-md rounded hover:transform hover:scale-105 transition duration-300' %>
         <%= button_to edit_section_path, method: :get,
             form_class: btn_classlist do %>
           <svg xmlns="http://www.w3.org/2000/svg" class="m-2 h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
