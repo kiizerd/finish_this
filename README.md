@@ -1,9 +1,10 @@
 # Finish This
 
 A web-app to manage and help finish projects.  
-I built this project to learn more about Rails  
-and so that I would have simple tool that I enjoy using  
-to manage my coding and other personal projects without using paper.
+Pretty straightfoward and simple rails routes with 3 regular models and a Devise User model.  
+Users have Projects, which have Sections, which have Tasks.  
+  
+Projects, sections and tasks are all CRUDable but "completion" is not yet possible.  
 
 ## Roadmap
 
@@ -20,7 +21,7 @@ to manage my coding and other personal projects without using paper.
 
 ## Built with
 
-Frontend: TailwindCSS v2.2(StimulusJS coming soon)
-Backend: Ruby on Rails v6.1.4
-  Gems: Devise, Simple_Forms, Better_Errors
-Database: PostgreSQL
+Frontend: TailwindCSS v2.2(StimulusJS coming soon)  
+Backend: Ruby on Rails v6.1.4  
+  Gems: Devise, Simple_Forms, Better_Errors  
+Database: PostgreSQL  
