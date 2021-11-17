@@ -5,15 +5,14 @@ Pretty straightfoward and simple rails routes with 3 regular models and a Devise
 Users have Projects, which have Sections, which have Tasks.  
 
 Organizing the routes for this app was quite a learning experience, resourceful nesting is only good for a single level deep so I used 2 separate nested resourceful routes.
-``
-  resources :projects do
+
+``resources :projects do
     resources :sections, shallow: true
   end
 
   resources :sections do
     resources :tasks, shallow: true
-  end
-``
+  end``
 
 Projects, sections and tasks are all CRUDable but "completion" is not yet possible.  
 
