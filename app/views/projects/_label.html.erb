@@ -1,6 +1,6 @@
-<p class="text-sm text-gray-200">
+<p class="text-sm text-gray-200 hover:text-gray-400 transition duration-300">
   <% if Project.exists?(label.id) %>
-    <%= link_to label.name.truncate(16), label %>
+    <%= link_to label.name.truncate(20), label %>
 
   <% end %>
 </p>

@@ -10,10 +10,15 @@
         <%= render partial: 'projects/label', collection: current_user.projects %>
       </ul>
       <hr>
-      <div class="h-12 w-full flex items-center text-gray-300">
+      <div class="h-12 w-full flex items-center text-gray-300 hover:text-gray-500 transition duration-300">
         <%= link_to 'New Project', new_project_path %>
       </div>
     </div>
   </div>
+  </div>
+  <div class="fixed md:hidden block bg-gray-700 shadow cursor-pointer translate-x-8 transition duration-300 p-1 ml-1 mt-4 rounded-lg">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="white">
+    <path d="M5 4a1 1 0 00-2 0v7.268a2 2 0 000 3.464V16a1 1 0 102 0v-1.268a2 2 0 000-3.464V4zM11 4a1 1 0 10-2 0v1.268a2 2 0 000 3.464V16a1 1 0 102 0V8.732a2 2 0 000-3.464V4zM16 3a1 1 0 011 1v7.268a2 2 0 010 3.464V16a1 1 0 11-2 0v-1.268a2 2 0 010-3.464V4a1 1 0 011-1z" />
+    </svg>
   </div>
 <% end %>

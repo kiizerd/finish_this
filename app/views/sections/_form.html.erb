@@ -13,9 +13,9 @@
         </div>
 
         <div class="text-center text-lg font-semibold text-black">
-          <% if current_page?(action: 'new') %>
+          <% unless Section.exists? section.id %>
             New section
-          <% elsif current_page?(action: 'edit') %>
+          <% else %>
             Edit section
           <% end %>
         </div>
@@ -59,6 +59,32 @@
                           class: "#{input_classlist} resize-none text-sm h-24 mb-1" } %>
             </div>
 
+            <% dropdown_classlist = 'relative bg-transparent text-sm' %>
+            <div class="py-1 flex justify-between rounded-lg w-full
+                            bg-gray-100 border-2 border-gray-200 shadow-md
+                            focus:bg-white focus:border-gray-400
+                            focus:outline-none hover:shadow-lg hover:border-gray-300
+                            transition duration-300">
+              <div class="flex pr-3">
+                <%= f.input :status,
+                            selected: true,
+                            collection: Section::STATUS_OPTIONS,
+                            input_html: {
+                              class: dropdown_classlist
+                            } %>
+              </div>
+
+              <div class="flex pl-3">                          
+                <%= f.input :priority,
+                            selected: true,
+                            collection: Section::PRIORITY_OPTIONS,
+                            input_html: {
+                              class: dropdown_classlist
+                            } %>
+              </div>
+
+            </div>
+
           </div>
 
           <div class="form-actions">
@@ -92,6 +118,32 @@
             <div class="py-1">
               <%= f.input :description, required: true, input_html: {
                           class: "#{input_classlist} resize-none text-sm h-24 mb-1" } %>
+            </div>
+
+            <% dropdown_classlist = 'relative bg-transparent text-sm' %>
+            <div class="py-1 flex justify-between rounded-lg w-full
+                            bg-gray-100 border-2 border-gray-200 shadow-md
+                            focus:bg-white focus:border-gray-400
+                            focus:outline-none hover:shadow-lg hover:border-gray-300
+                            transition duration-300">
+              <div class="flex pr-3">
+                <%= f.input :status,
+                            selected: true,
+                            collection: Section::STATUS_OPTIONS,
+                            input_html: {
+                              class: dropdown_classlist
+                            } %>
+              </div>
+
+              <div class="flex pl-3">                          
+                <%= f.input :priority,
+                            selected: true,
+                            collection: Section::PRIORITY_OPTIONS,
+                            input_html: {
+                              class: dropdown_classlist
+                            } %>
+              </div>
+
             </div>
 
           </div>

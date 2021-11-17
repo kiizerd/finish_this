@@ -13,9 +13,9 @@
         </div>
 
         <div class="text-center text-lg font-semibold text-black">
-          <% if current_page?(action: 'new') %>
+          <% unless Project.exists? project.id %>
             Create project
-          <% elsif current_page?(action: 'edit') %>
+          <% else %>
             Edit project
           <% end %>
         </div>
