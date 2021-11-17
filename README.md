@@ -8,7 +8,6 @@ Projects, sections and tasks are all CRUDable but "completion" is not yet possib
 
 Organizing the routes for this app was quite a learning experience, resourceful nesting is only good for a single level deep so I used 2 separate nested resourceful routes.
 
-
 This was also my first project using Tailwind and I have to admit it's very nice!!  
 It speeds up styling so much and the responsiveness and animations out of the box are amazing!
 
