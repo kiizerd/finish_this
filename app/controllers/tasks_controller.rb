@@ -19,7 +19,7 @@ class TasksController < ApplicationController
         format.html { redirect_to @project, notice: "Task was successfully created." }
         format.json { render :show, status: :created, location: @task }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { redirect_to @project, alert: "Task creation error." }
         format.json { render json: @task.errors, status: :unprocessable_entity }
       end
     end
@@ -31,7 +31,7 @@ class TasksController < ApplicationController
         format.html { redirect_to @task.section.project, notice: "Task was successfully updated." }
         format.json { render :show, status: :ok, location: @task }
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        format.html { redirect_to @project, alert: "Task update error." }
         format.json { render json: @task.errors, status: :unprocessable_entity }
       end
     end
