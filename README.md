@@ -23,5 +23,5 @@ Projects, sections and tasks are all CRUDable but "completion" is not yet possib
 
 Frontend: TailwindCSS v2.2(StimulusJS coming soon)  
 Backend: Ruby on Rails v6.1.4  
-  Gems: Devise, Simple_Forms, Better_Errors  
+  Ruby Gems: Devise, Simple_Forms, Better_Errors  
 Database: PostgreSQL  
